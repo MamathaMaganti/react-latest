@@ -5,29 +5,6 @@ const ExpenseForm = (props) => {
   const [enteredTitle, setEnteredTitle] = useState("");
   const [enteredAmount, setEnteredAmount] = useState("");
   const [enteredDate, setEnteredDate] = useState("");
-  const [formType, setformType] = useState(props.formType);
-
-  //   const [userInput, setUserInput] = useState({
-  //     enteredTitle: "",
-  //     enteredAmount: "",
-  //     enteredDate: "",
-  //   });
-
-  //   Updating elements in a single state
-
-  //   const titleChangeHandler = (event) => {
-  //     // setUserInput({...userInput,
-  //     //     enteredTitle: event.target.value});
-  //     setUserInput((prevState) => {
-  //       return { ...prevState, enteredTitle: event.target.value };
-  //     });
-  //   };
-  //   const amountChangeHandler = (event) => {
-  //     setUserInput({ ...userInput, enteredAmount: event.target.value });
-  //   };
-  //   const dateChangeHandler = (event) => {
-  //     setUserInput({ ...userInput, enteredDate: event.target.value });
-  //   };
 
   const titleChangeHandler = (event) => {
     setEnteredTitle(event.target.value);
@@ -57,45 +34,15 @@ const ExpenseForm = (props) => {
     setEnteredTitle("");
     setEnteredAmount("");
     setEnteredDate("");
-    setformType("AddExpenseForm");
+    props.onCancel();
   };
-
-  const submitAddExpenseHandler = (event) => { 
-    event.preventDefault();
-    setformType("");
-  }
 
   const cancelHandler = (event) => {
     event.preventDefault();
     console.log("cancelled !!!!");
-    setEnteredTitle("");
-    setEnteredAmount("");
-    setEnteredDate("");
-    setformType("AddExpenseForm");
+    props.onCancel();
   };
 
-  // return (
-  //   <form onSubmit={submitAddExpenseHandler}>
-  //     <div className="new-expense__controls">
-  //       <div className="new-expense__actions">
-  //         <button type="submit">Add New Expense</button>
-  //       </div>
-  //     </div>
-  //   </form>
-  // );
-
-  if(formType === "AddExpenseForm") {
-    return (
-      <form onSubmit={submitAddExpenseHandler}>
-        <div className="new-expense__controls">
-          <div className="new-expense__actions">
-            <button type="submit">Add New Expense</button>
-          </div>
-        </div>
-      </form>
-    );
-  }
- else {
   return (
     <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
@@ -128,9 +75,6 @@ const ExpenseForm = (props) => {
       </div>
     </form>
   );
- }
-
-  
 };
 
 export default ExpenseForm;
